@@ -3,39 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Home</title>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Firebase SDK -->
     <!-- Firebase SDK version 8.x -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
 
 </head>
 <body>
     <style>
-         body {
-      background-color: #f4f4f4;
-    }
-    .logout-link {
+    .btn {
       cursor: pointer;
     }
+    .user-details-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #dbc7c75e;
+            border-radius: 10px;
+            box-shadow: 10px 20px 10px rgba(245, 6, 6, 0.263);
+        }
+        .brand-logo{
+          margin-left: 10px;
+        }
     </style>
 </head>
 <body>
     <nav>
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">Dashboard</a>
+        <div class="nav-wrapper purple lighten-3">
+          <a href="home.html" class="brand-logo">CollectDocs</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a class="logout-link" onclick="logout()">Logout</a></li>
+            <li><a class="waves-effect waves-light btn" onclick="logout()">Logout <span class="material-icons left">
+              logout
+              </span></a></li>
           </ul>
         </div>
       </nav>
-    
-      <div class="container">
-        <h4>Welcome to your Dashboard</h4>
-        <p>This is a simple dashboard using MaterializeCSS.</p>
-      </div>
+      <div id="user-details" class="user-details-container card-panel">
+        <h5 class="center-align">User Profile</h5>
+        <div class="row">
+            <div class="col s12">
+                <p><strong>Name:</strong> <span id="user-name"></span></p>
+                <p><strong>Email:</strong> <span id="user-email"></span></p>
+                <p><strong>Phone:</strong> <span id="user-phone"></span></p>
+                <p><strong>Speciality:</strong> <span id="user-speciality"></span></p>
+                <p><strong>Portfolio:</strong> <a href="#" id="user-portfolio" target="_blank"></a></p>
+            </div>
+        </div>
+    </div>
     
       <!-- Import jQuery and Materialize JS -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -58,8 +78,14 @@
         // Function to check if the user is logged in
         auth.onAuthStateChanged((user) => {
             if (!user) {
+                // User is not logged in, redirect to login page
+                // getUserData(null)
                 window.location.href = "index.html"; // Change to your login page
-            } 
+            }else{
+                // User is logged in, fetch user details
+                getUserDataRealtime(user.uid)
+                console.log(user.uid);
+            }
         });
 
         // Function to log out the user
@@ -71,8 +97,8 @@
                 M.toast({html: 'An error occurred during logout', classes: 'rounded red'});
             });
         }
-        
-
     </script>
+
+    <script src="./firestore-db.js"></script>
 </body>
 </html>

@@ -4,18 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-
      <!-- Compiled and minified CSS -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-             
-    <!-- Firebase SDK -->
     <!-- Firebase SDK version 8.x -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 </head>
 <body>
-
   <section class="section full-height">
     <div class="container">
       <div class="row">
@@ -85,10 +81,11 @@
                 M.toast({ 
                   html:  'User created successfully!', classes: 'rounded green', 
                   classes: 'rounded green',
-                  displayLength: 5000 // Duration of the toast in milliseconds
+                  displayLength: 4000 // Duration of the toast in milliseconds
                 });
               });
               M.toast({html: 'Verification email sent to ' + user.email + ', please verify your email', classes: 'rounded green'});
+              createUserCollection(user);
               signupForm.reset();
             })
             .catch((error) => {
@@ -97,12 +94,10 @@
             });
 
         });
-
-        
-
     </script>
-    
      <!-- Compiled and minified JavaScript -->
      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+     <script src="./firestore-db.js"></script>
 </body>
 </html>
