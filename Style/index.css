@@ -1,0 +1,125 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .section {
+    width: 100%;
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .header {
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-weight: 700;
+  }
+  
+  p {
+    margin-bottom: 30px;
+    color: #7f8c8d;
+  }
+  
+  .input-field input[type=email],
+  .input-field input[type=password] {
+    border-bottom: 1px solid #bdc3c7;
+    box-shadow: none;
+    transition: all 0.4s ease-in-out;
+  }
+  
+  .input-field input[type=email]:focus,
+  .input-field input[type=password]:focus {
+    border-bottom: 1px solid #2980b9;
+    box-shadow: 0 1px 0 0 #2980b9;
+  }
+  
+  .btn {
+    width: 100%;
+    background-color: #2980b9;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  .btn:hover {
+    background-color: #3498db;
+    transform: scale(1.05);
+  }
+  
+  .google-btn {
+    background-color: #db4437;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  .google-btn:hover {
+    background-color: #e57373;
+    transform: scale(1.05);
+  }
+  
+  .or-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    font-weight: bold;
+    color: #7f8c8d;
+    position: relative;
+  }
+  
+  .or-divider::before,
+  .or-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #bdc3c7;
+    margin: 0 10px;
+  }
+  
+  .center-align {
+    text-align: center;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .form-container {
+    animation: slideIn 1s ease-in-out;
+  }
+  
+  @keyframes slideIn {
+    0% {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  a {
+    transition: color 0.3s ease-in-out;
+  }
+  
+  a:hover {
+    color: #3498db;
+  }
+  .right{
+    margin-bottom: 20px;
+  }
