@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+             
+    <!-- Firebase SDK -->
+    <!-- Firebase SDK version 8.x -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+</head>
+<body>
+
+  <section class="section full-height">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <div class="center-align mb-5">
+            <h2 class="header">Sign up</h2>
+            <p>Already have an account? <a href="index.html" class="blue-text text-darken-2">Login</a></p>
+          </div>
+        </div>
+      </div>
+
+        <div class="col s12 m10 l8 offset-m1 offset-l2">
+          <div class="row">
+            <div class="col s12 m6 offset-m3">
+              <form id="signup-form" method="post">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input type="email" name="email" id="email" class="validate" required>
+                    <label for="email">Email</label>
+                  </div>
+                  <div class="input-field col s12">
+                    <input type="password" name="password" id="password" class="validate" required>
+                    <label for="password">Password</label>
+                  </div>
+                  <div class="col s12">
+                    <button class="btn waves-effect waves-red btn-medium blue" type="submit" id="auth-btn">Sign up</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBUtEfoq1PN3-etYB5c6pFC_muKXHIfBQQ",
+            authDomain: "collectdocs-cdb60.firebaseapp.com",
+            projectId: "collectdocs-cdb60",
+            storageBucket: "collectdocs-cdb60.appspot.com",
+            messagingSenderId: "881885483292",
+            appId: "1:881885483292:web:37e2caa499e4439613ead9"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Reference to the signup form
+        const signupForm = document.getElementById('signup-form');
+
+        // Form submit event listener
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get user email and password
+            const email = signupForm['email'].value;
+            const password = signupForm['password'].value;
+
+            // Sign up the user
+            auth.createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+              var user = userCredential.user;
+              user.sendEmailVerification().then(() => {
+                M.toast({ 
+                  html:  'User created successfully!', classes: 'rounded green', 
+                  classes: 'rounded green',
+                  displayLength: 5000 // Duration of the toast in milliseconds
+                });
+              });
+              M.toast({html: 'Verification email sent to ' + user.email + ', please verify your email', classes: 'rounded green'});
+              signupForm.reset();
+            })
+            .catch((error) => {
+              M.toast({html: error.message, classes: 'rounded red'});
+
+            });
+
+        });
+
+        
+
+    </script>
+    
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

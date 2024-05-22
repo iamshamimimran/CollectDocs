@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Firebase SDK -->
+    <!-- Firebase SDK version 8.x -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+</head>
+<body>
+    <style>
+         body {
+      background-color: #f4f4f4;
+    }
+    .logout-link {
+      cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo center">Dashboard</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a class="logout-link" onclick="logout()">Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+    
+      <div class="container">
+        <h4>Welcome to your Dashboard</h4>
+        <p>This is a simple dashboard using MaterializeCSS.</p>
+      </div>
+    
+      <!-- Import jQuery and Materialize JS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBUtEfoq1PN3-etYB5c6pFC_muKXHIfBQQ",
+            authDomain: "collectdocs-cdb60.firebaseapp.com",
+            projectId: "collectdocs-cdb60",
+            storageBucket: "collectdocs-cdb60.appspot.com",
+            messagingSenderId: "881885483292",
+            appId: "1:881885483292:web:37e2caa499e4439613ead9"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Function to check if the user is logged in
+        auth.onAuthStateChanged((user) => {
+            if (!user) {
+                window.location.href = "index.html"; // Change to your login page
+            } 
+        });
+
+        // Function to log out the user
+        function logout() {
+            auth.signOut().then(() => {
+                window.location.href = "index.html"; // Redirect to login page
+            }).catch((error) => {
+                
+                M.toast({html: 'An error occurred during logout', classes: 'rounded red'});
+            });
+        }
+        
+
+    </script>
+</body>
+</html>
