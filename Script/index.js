@@ -46,11 +46,6 @@
                     classes: 'rounded red accent-3',
                     displayLength: 5000 // Duration of the toast in milliseconds
                 });
-                auth.signOut().then(() => {
-                    console.log('User signed out due to unverified email.');
-                }).catch((error) => {
-                    console.log('Sign out error:', error);
-                });
             }
         })
         .catch((err) => {

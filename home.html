@@ -55,8 +55,42 @@
                 <p><strong>Portfolio:</strong> <a href="#" id="user-portfolio" target="_blank"></a></p>
             </div>
         </div>
+        <!-- Edit Profile Button -->  
+      <a class="waves-effect waves-light btn modal-trigger" href="#edit-profile-modal">Edit Profile</a>
+
     </div>
-    
+
+  <!-- Modal Structure -->
+  <div id="edit-profile-modal" class="modal" style="border-radius: 10px;">
+    <div class="modal-content">
+      <h4>Edit Profile</h4>
+
+      <form id="edti-profile-form" onsubmit="updateUserProfile(event)" method="post">
+          <input name="name" type="text" placeholder="Name">
+
+          <input name="email" type="email" placeholder="Email" disabled>
+
+          <input name="phone" type="tel" placeholder="Phone">
+
+          <input name="portfolio" type="text" placeholder="Portfolio">
+
+          <input name="speciality" type="text" placeholder="Speciality">
+
+          <button type="submit" class="modal-close waves-effect waves-green btn">Save</button>
+        </form>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-red btn">Cancel</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize the modal
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems);
+    });
+  </script>
       <!-- Import jQuery and Materialize JS -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

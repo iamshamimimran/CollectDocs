@@ -24,24 +24,20 @@ signupForm.addEventListener('submit', (e) => {
     const password = signupForm['password'].value;
 
     // Sign up the user
-    auth.createUserWithEmailAndPassword(email, password)
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:4187028754.
+auth.createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       var user = userCredential.user;
-      user.sendEmailVerification().then(() => {
-        M.toast({ 
-          html:  'User created successfully!', classes: 'rounded green', 
-          classes: 'rounded green',
-          displayLength: 4000 // Duration of the toast in milliseconds
-        });
-      });
+      user.sendEmailVerification();
       M.toast({html: 'Verification email sent to ' + user.email + ', please verify your email', classes: 'rounded green'});
       createUserCollection(user);
       signupForm.reset();
     })
     .catch((error) => {
+      console.log(error);
       M.toast({html: 'This email already exist', classes: 'rounded red'});
-
     });
+
 
 });
 
@@ -62,7 +58,6 @@ signupForm.addEventListener('submit', (e) => {
         .then((userCredential) => {
         var user = userCredential.user;
         console.log('User logged in:', user);
-
         if (user.emailVerified) {
             M.toast({
                 html: 'Please wait, verifying your account...',

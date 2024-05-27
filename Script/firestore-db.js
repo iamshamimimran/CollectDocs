@@ -22,8 +22,9 @@ async function getUserData(userID) {
                 <p>Name: ${userInfo.name}</p>
                 <p>Email: ${userInfo.email}</p>
                 <p>Phone: ${userInfo.phone}</p>
-                <p>Speciality: ${userInfo.speciality}</p>
-                <p>Portfolio: ${userInfo.portfolio}</p>`
+                <p>Portfolio: ${userInfo.portpolio}</p>
+                <p>Speciality: ${userInfo.spetiality}</p>`
+                
             } else {
                 userDetails.innerHTML = 'No user data found.';
             }
@@ -34,6 +35,7 @@ async function getUserData(userID) {
 
 async function getUserDataRealtime(userID) {
     const userDetails = document.getElementById('user-details');
+    const editProfile = document.getElementById('edti-profile-form');
     if (userID) {
             const userInfoSnap = await firebase.firestore().collection('users').doc(userID);  
             userInfoSnap.onSnapshot((doc) => {
@@ -43,14 +45,19 @@ async function getUserDataRealtime(userID) {
                         document.getElementById('user-name').innerText = userInfo.name ||'Not Available';
                         document.getElementById('user-email').innerText = userInfo.email;
                         document.getElementById('user-phone').innerText = userInfo.phone ||'Not Available';
-                        document.getElementById('user-speciality').innerText = userInfo.speciality ||'Not Available';
+                        document.getElementById('user-speciality').innerText = userInfo.spetiality ||'Not Available';
                         var portfolioLink = document.getElementById('user-portfolio');
-                        portfolioLink.innerText = userInfo.portfolio ||'Not Available';
-                        portfolioLink.href = userInfo.portfolio;
-                }
+                        portfolioLink.innerText = userInfo.portpolio ||'Not Available';
+                        portfolioLink.href = userInfo.portpolio;
+                    }
+                    editProfile["email"].value = userInfo.email || '';
+                    editProfile["name"].value = userInfo.name || '';
+                    editProfile["phone"].value = userInfo.phone || '';
+                    editProfile["speciality"].value = userInfo.spetiality || '';
+                    editProfile["portfolio"].value = userInfo.portpolio || '';
             }
             }) 
-        }else {
+                }else {
                 userDetails.innerHTML = 'No user data found.';
             }
   

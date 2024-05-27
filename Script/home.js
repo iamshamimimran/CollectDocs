@@ -34,3 +34,24 @@ function logout() {
         M.toast({html: 'An error occurred during logout', classes: 'rounded red'});
     });
 }
+
+
+function updateUserProfile(e) {
+    e.preventDefault();
+    const editProfile = document.getElementById('edti-profile-form');
+    const userDocRef = firebase.firestore()
+    .collection('users')
+    .doc(firebase.auth().currentUser.uid)
+    
+    userDocRef.update({
+        name:editProfile["name"].value,
+        email:editProfile["email"].value,
+        phone:editProfile["phone"].value,
+        portpolio:editProfile["portfolio"].value,
+        spetiality:editProfile["speciality"].value
+
+    })
+    // M.Modal.getInstance(editProfile).close();
+    M.toast({html: 'Profile updated successfully', classes: 'rounded green'});
+
+}
